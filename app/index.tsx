@@ -1,9 +1,11 @@
-import './globals.css'
 import { SafeAreaView } from "react-native-safe-area-context";
 import {FlatList, Pressable, View, Text, Image, TouchableOpacity,} from "react-native";
-import {images, offers} from "@/constants"
 import { Fragment } from "react";
 import cn from 'clsx'
+
+import './globals.css'
+import {images, offers} from "@/constants"
+import CartButton from "@/components/CartButton";
 
 
 export default function Index() {
@@ -53,7 +55,7 @@ export default function Index() {
                                   </TouchableOpacity>
                               </View>
 
-                              <Text>Cart</Text>
+                              <CartButton/>
                           </View>
                       )}
                   />
