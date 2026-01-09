@@ -3,7 +3,7 @@ import {FlatList, Pressable, View, Text, Image, TouchableOpacity,} from "react-n
 import { Fragment } from "react";
 import cn from 'clsx'
 
-import './globals.css'
+import '../globals.css'
 import {images, offers} from "@/constants"
 import CartButton from "@/components/CartButton";
 
