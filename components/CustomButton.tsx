@@ -1,4 +1,4 @@
-import {View, Text, TouchableOpacity} from 'react-native'
+import {View, Text, TouchableOpacity, ActivityIndicator} from 'react-native'
 import cn from 'clsx'
 
 import {CustomButtonProps} from "@/type"
@@ -16,7 +16,7 @@ const CustomButton = ({
             {leftIcon}
             <View className="flex-center flex-row">
                 {isLoading ? (
-                    <ActivityIndicator size="lsmall" color="white" />
+                    <ActivityIndicator size="small" color="white" />
                 ): (
                     <Text className={cn('text-white-100 paragraph-semibold', textStyle)}>{title}</Text>
                 )}
