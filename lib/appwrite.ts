@@ -35,7 +35,8 @@ export const createUser = async ({name, email, password }: CreateUserParams) => 
             appwriteConfig.databaseId,
             appwriteConfig.userTableId,
             ID.unique(),
-            { name, email,accountId: newAccount.$id, avatar: avatarUrl }
+            // { email,accountId: newAccount.$id, avatar: avatarUrl }
+            // { name, email,accountId: newAccount.$id, avatar: avatarUrl }
         )
 
     } catch(error){
