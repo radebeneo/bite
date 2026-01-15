@@ -6,7 +6,12 @@ export const appwriteConfig = {
     projectId: process.env.EXPO_PUBLIC_APPWRITE_PROJECT_ID!,
     platform: "com.bhungane.bite",
     databaseId: '6960d9d20012e01a9035',
-    userTableId: 'user'
+    bucketId: '6968f2c6003a83937bc3',
+    userTableId: 'user',
+    categoriesTableId: 'categories',
+    menuTableId: 'menu',
+    customizationsTableId: 'customizations',
+    menuCustomizationsTableId: 'menu_customizations',
 }
 
 export const client = new Client()
