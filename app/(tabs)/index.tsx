@@ -14,9 +14,6 @@ export default function Index() {
     
     const {user} = useAuthStore()
 
-    console.log("user;", JSON.stringify(user, null, 2))
-
-
     return (
         <SafeAreaView className="flex-1 bg-white">
 
