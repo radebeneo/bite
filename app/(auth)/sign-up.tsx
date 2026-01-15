@@ -15,7 +15,7 @@ const SignUp = () => {
 
         const {name, email, password} = form;
 
-        if(!name || !email || !password) return Alert.alert('Error', 'Please enter a valid email');
+        if(!name || !email || !password) return Alert.alert('Error', 'Please fill in all fields');
 
         setIsSubmitting(true);
 

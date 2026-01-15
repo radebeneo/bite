@@ -1,6 +1,7 @@
 import {View, Text, Button, Alert} from 'react-native'
 import React, {useState} from 'react'
 import {Link, router} from "expo-router";
+import * as Sentry from "@sentry/react-native";
 import CustomInput from "@/components/CustomInput";
 import CustomButton from "@/components/CustomButton";
 import {signIn} from "@/lib/appwrite";
@@ -15,7 +16,7 @@ const SignIn = () => {
 
         const { email, password} = form;
 
-        if(!email || !password) return Alert.alert('Error', 'Please enter a valid email');
+        if(!email || !password) return Alert.alert('Error', 'Please fill in all fields');
 
         setIsSubmitting(true);
 
@@ -26,6 +27,7 @@ const SignIn = () => {
             router.replace('/')
         } catch(error: any){
             Alert.alert('Error', error.message)
+            Sentry.captureEvent(error)
         } finally {
             setIsSubmitting(false);
         }

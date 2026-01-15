@@ -23,9 +23,9 @@ const avatars = new Avatars(client)
 export const createUser = async ({name, email, password }: CreateUserParams) => {
 
     try{
-        const newAccount = await account.create(ID.unique(), name, email, password)
+        const newAccount = await account.create(ID.unique(), email, password, name)
 
-        if(!newAccount) throw Error
+        if(!newAccount) throw new Error("Account creation failed");
 
         await signIn({email, password})
 
@@ -38,14 +38,14 @@ export const createUser = async ({name, email, password }: CreateUserParams) => 
             { name, email,accountId: newAccount.$id, avatar: avatarUrl }
         )
 
-    } catch(error){
-        throw new Error(error as string)
+    } catch(error: any){
+        throw new Error(error.message || error.toString())
     }
 }
 
 export const signIn = async ({email, password}: SignInParams) => {
     try{
-        const session = await account.createEmailPasswordSession(email, password)
+        return await account.createEmailPasswordSession(email, password)
     } catch(error) {
         throw new Error(error as string)
     }
@@ -63,7 +63,7 @@ export const getCurrentUser = async () => {
             [Query.equal('accountId', currentAccount.$id)]
         )
 
-        if(!currentAccount) throw Error
+        if(!currentUser.documents[0]) return null;
 
         return currentUser.documents[0]
 
