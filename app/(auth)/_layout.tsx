@@ -1,17 +1,20 @@
 import {View, Text, KeyboardAvoidingView, Platform, Animated, Dimensions, ImageBackground, Image} from 'react-native'
 import {SafeAreaView} from "react-native-safe-area-context";
-import { Slot } from "expo-router"
+import {Redirect, Slot} from "expo-router"
 import ScrollView = Animated.ScrollView;
 
 
 import {images} from "@/constants";
-import CustomInput from "@/components/CustomInput";
-import CustomButton from "@/components/CustomButton";
-import {placeholder} from "@babel/types";
+import useAuthStore from "@/store/auth.store";
 
 
-const _Layout = () => {
-    return (
+const AuthLayout = () => {
+
+    const { isAuthenticated } = useAuthStore()
+
+    if(isAuthenticated) return <Redirect href="/" />
+
+        return (
         <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
             <ScrollView className="bg-white h-full" keyboardShouldPersistTaps="handled">
                 <View className="w-full relative" style={{height: Dimensions.get("screen").height / 2.25}}>
@@ -24,4 +27,4 @@ const _Layout = () => {
         </KeyboardAvoidingView>
     )
 }
-export default _Layout
+export default AuthLayout
