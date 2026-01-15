@@ -25,6 +25,7 @@ Sentry.init({
 
 export default Sentry.wrap(function RootLayout() {
 
+
   const [fontsLoaded, error] = useFonts({
     "QuickSand-Bold": require('../assets/fonts/Quicksand-Bold.ttf'),
     "QuickSand-Medium": require('../assets/fonts/Quicksand-Medium.ttf'),
