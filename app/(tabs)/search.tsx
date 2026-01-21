@@ -1,10 +1,11 @@
-import {View, Text, Button} from 'react-native'
+import {View, Text, Button, FlatList} from 'react-native'
 import {SafeAreaView} from "react-native-safe-area-context";
 import {useLocalSearchParams} from "expo-router";
 import seed from "@/lib/seed";
 import useAppwrite from "@/lib/useAppwrite";
 import {getCategories, getMenu} from "@/lib/appwrite";
 import {useEffect} from "react";
+import CartButton from "@/components/CartButton";
 
 
 
@@ -23,8 +24,41 @@ const Search = () => {
 
 
     return (
-        <SafeAreaView>
-            <Text>Search</Text>
+        <SafeAreaView className="bg-white h-full">
+
+            <FlatList
+                data={data}
+                renderItem={({item, index}) => {
+                    return(
+                    <View className="flex-1 max-w-[48%]">
+                        <Text>Menu Card</Text>
+                    </View>
+                    )
+            }}
+                keyExtractor={item => item.$id}
+                numColumns={2}
+                columnWrapperClassName="gap-7"
+                contentContainerClassName="gap-7 px-5 pb-32"
+                ListHeaderComponent={() => (
+                    <View className="my-5 gap-5">
+                        <View className="flex-between flex-row w-full">
+                            <View className="flex-start">
+                                <Text className="small-bold uppercase text-primary">Search</Text>
+                                <View className="flex-start flex-row gap-x-1 mt-0.5">
+                                    <Text className="paragraph-semibold text-dark-100">Find your favourite food</Text>
+                                </View>
+                            </View>
+                            <CartButton/>
+                        </View>
+                        <Text>Search Input</Text>
+                        <Text>Filter</Text>
+                    </View>
+                )}
+                ListEmptyComponent={() => !loading && <Text className="text-center">No results found</Text>}
+
+            />
+
+
 
         </SafeAreaView>
     )
