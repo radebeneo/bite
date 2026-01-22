@@ -6,6 +6,7 @@ import useAppwrite from "@/lib/useAppwrite";
 import {getCategories, getMenu} from "@/lib/appwrite";
 import {useEffect} from "react";
 import CartButton from "@/components/CartButton";
+import cn from "clsx";
 
 
 
@@ -29,8 +30,11 @@ const Search = () => {
             <FlatList
                 data={data}
                 renderItem={({item, index}) => {
+
+                    const isFirstRightColItem = index % 2 === 0
+
                     return(
-                    <View className="flex-1 max-w-[48%]">
+                    <View className={cn('flex-1 max-w-[48%]', !isFirstRightColItem ? 'mt-10' : 'mt-0')}>
                         <Text>Menu Card</Text>
                     </View>
                     )
