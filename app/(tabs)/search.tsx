@@ -7,6 +7,8 @@ import {getCategories, getMenu} from "@/lib/appwrite";
 import {useEffect} from "react";
 import CartButton from "@/components/CartButton";
 import cn from "clsx";
+import {MenuItem, GetMenuParams} from "@/type";
+import MenuCard from "@/components/MenuCard";
 
 
 
@@ -15,12 +17,15 @@ const Search = () => {
 
     const {category, query} = useLocalSearchParams<{query: string, category: string}> ()
 
-    const { data, refetch, loading } = useAppwrite({fn: getMenu, params: { category,  query, limit: 6,}})
+    const { data, refetch, loading } = useAppwrite<MenuItem[], GetMenuParams>({
+        fn: getMenu,
+        params: { category, query, limit: 6 }
+    })
 
-    const {data: categories} = useAppwrite({fn: getCategories})
+    const { data: categories } = useAppwrite({ fn: getCategories })
 
     useEffect(() => {
-        refetch({category, query, limit: 6})
+        refetch({ category, query, limit: 6 })
     }, [category, query]);
 
 
@@ -29,16 +34,16 @@ const Search = () => {
 
             <FlatList
                 data={data}
-                renderItem={({item, index}) => {
+                renderItem={({ item, index }) => {
 
                     const isFirstRightColItem = index % 2 === 0
 
-                    return(
-                    <View className={cn('flex-1 max-w-[48%]', !isFirstRightColItem ? 'mt-10' : 'mt-0')}>
-                        <Text>Menu Card</Text>
-                    </View>
+                    return (
+                        <View className={cn('flex-1 max-w-[48%]', !isFirstRightColItem ? 'mt-10' : 'mt-0')}>
+                            <MenuCard item={item} />
+                        </View>
                     )
-            }}
+                }}
                 keyExtractor={item => item.$id}
                 numColumns={2}
                 columnWrapperClassName="gap-7"

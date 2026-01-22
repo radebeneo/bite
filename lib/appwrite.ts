@@ -1,5 +1,5 @@
 import {Account, Avatars, Client, Databases, ID, Query, Storage} from "react-native-appwrite";
-import {CreateUserParams, GetMenuParams, SignInParams, User} from "@/type";
+import {CreateUserParams, GetMenuParams, MenuItem, SignInParams, User} from "@/type";
 
 export const appwriteConfig = {
     endpoint: process.env.EXPO_PUBLIC_APPWRITE_ENDPOINT!,
@@ -79,7 +79,7 @@ export const getCurrentUser = async () => {
     }
 }
 
-export const getMenu = async ({category, query}: GetMenuParams) => {
+export const getMenu = async ({category, query}: GetMenuParams): Promise<MenuItem[]> => {
     try{
         const queries: string[] = []
 
@@ -93,7 +93,7 @@ export const getMenu = async ({category, query}: GetMenuParams) => {
             queries
         )
 
-        return menus.documents
+        return menus.documents as unknown as MenuItem[]
 
     } catch(error){
         throw new Error(error as string)
