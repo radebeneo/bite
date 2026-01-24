@@ -9,9 +9,13 @@ import CartButton from "@/components/CartButton";
 import cn from "clsx";
 import {MenuItem, GetMenuParams} from "@/type";
 import MenuCard from "@/components/MenuCard";
+import SearchBar from "@/components/SearchBar";
+import Filter from "@/components/Filter";
 
 
-
+function Filter() {
+    return null;
+}
 
 const Search = () => {
 
@@ -59,8 +63,8 @@ const Search = () => {
                             </View>
                             <CartButton/>
                         </View>
-                        <Text>Search Input</Text>
-                        <Text>Filter</Text>
+                        <SearchBar/>
+                        <Filter/>
                     </View>
                 )}
                 ListEmptyComponent={() => !loading && <Text className="text-center">No results found</Text>}
