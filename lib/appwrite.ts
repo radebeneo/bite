@@ -109,6 +109,7 @@ export const getCategories = async () => {
             appwriteConfig.categoriesTableId
         )
 
+        return categories.documents
 
     } catch(error){
         throw new Error(error as string)

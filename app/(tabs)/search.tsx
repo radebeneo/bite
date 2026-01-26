@@ -10,7 +10,7 @@ import cn from "clsx";
 import {MenuItem, GetMenuParams} from "@/type";
 import MenuCard from "@/components/MenuCard";
 import SearchBar from "@/components/SearchBar";
-import Filter from "@/components/Filter";
+import FilterComponent from "@/components/FilterComponent";
 
 
 function Filter() {
@@ -64,7 +64,7 @@ const Search = () => {
                             <CartButton/>
                         </View>
                         <SearchBar/>
-                        <Filter/>
+                        <FilterComponent categories={categories!}/>
                     </View>
                 )}
                 ListEmptyComponent={() => !loading && <Text className="text-center">No results found</Text>}
