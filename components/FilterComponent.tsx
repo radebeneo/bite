@@ -1,7 +1,8 @@
-import {View, Text, FlatList, TouchableOpacity} from 'react-native'
+import {View, Text, FlatList, TouchableOpacity, Platform} from 'react-native'
 import React, {useState} from 'react'
 import {Category} from "@/type";
 import {useLocalSearchParams} from "expo-router";
+import cn from "clsx";
 
 const FilterComponent = ({categories}: {categories: Category[]}) => {
 
@@ -17,9 +18,17 @@ const FilterComponent = ({categories}: {categories: Category[]}) => {
         <FlatList
         data={filterData}
         keyExtractor={item => item.$id}
+        horizontal
+        showsHorizontalScrollIndicator={false}
+        contentContainerClassName='gap-x-2 pb-3'
         renderItem={({item}) => (
-            <TouchableOpacity>
-                <Text>{item.name}</Text>
+            <TouchableOpacity
+                key={item.$id}
+                className={cn('filter', active === item.$id ? 'bg-amber-500': 'bg-white')}
+                style={Platform.OS === 'android' ? {elevation : 5 , shadowColor: '#878787'}: {}}
+                onPress={() => handlePress(item.$id)}
+            >
+                <Text className={cn('body-medium', active === item.$id ? 'text-white' : 'text-gray-200')}>{item.name}</Text>
             </TouchableOpacity>
         )}
 
