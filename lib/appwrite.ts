@@ -85,7 +85,7 @@ export const getMenu = async ({category, query}: GetMenuParams): Promise<MenuIte
 
         if(category) queries.push(Query.equal('categories', category))
 
-        if(query) queries.push(Query.equal('name', query))
+        if(query) queries.push(Query.search('name', query))
 
         const menus = await databases.listDocuments(
             appwriteConfig.databaseId,
