@@ -31,7 +31,13 @@ const Cart = () => {
             <FlatList
                 data={items}
                 renderItem={({item}) => <CartItem item={item}/>}
-                keyExtractor={item => item.$id}
+                keyExtractor={(item) => {
+                    const customizationsKey = item.customizations
+                        ?.map((c) => c.id)
+                        .sort()
+                        .join("-");
+                    return `${item.id}-${customizationsKey || ""}`;
+                }}
                 contentContainerClassName="px-5 pt-5 pb-38"
                 ListHeaderComponent={() => <CustomHeader title="YourCart"/>}
                 ListEmptyComponent={() => <Text className="text-center">No items in your cart</Text>}
